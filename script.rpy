@@ -10,12 +10,12 @@ define e = Character("Eileen")
 
 label start:
 
+    $total = 0
+    $numbers = ["One", "Two", "Three", "Four", "Five", "Six", "Seven"]
+
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
-
-    $numbers = ["One", "Two", "Three", "Four", "Five", "Six", "Seven"]
-
     scene bg room
     show screen hbox_screen(numbers, 50)
 
