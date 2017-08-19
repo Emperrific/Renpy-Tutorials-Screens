@@ -1,15 +1,24 @@
 style centered_style:
     xalign 0.5
     yalign 0.5
+    spacing 5
 
+style combo_text:
+    size 50
+
+style combo_hbox is centered_style
+
+init python:
+    def incTotal():
+        global total
+        total+=1
 
 screen hbox_screen(buttons=["Test"], text_size=30):
-    add "CoderGirl-WhiteBackground.jpg"
     hbox:
         style "centered_style"
+        spacing 10
         xmaximum 300
         box_wrap True
-        spacing 5
         for button in buttons:
             textbutton button:
                 action Null
@@ -18,13 +27,14 @@ screen hbox_screen(buttons=["Test"], text_size=30):
 
 screen vbox_screen(buttons=["Test"], text_size=30):
     vbox:
-        spacing 5
         xalign 0.1
         yalign 0.1
+        spacing 5
         for button in buttons:
             textbutton button:
                 action Null
                 text_size text_size
+
 
 screen grid_screen(buttons=["Test1", "Test2"], text_size=30):
     grid 2 len(buttons)/2+1:
@@ -39,15 +49,19 @@ screen grid_screen(buttons=["Test1", "Test2"], text_size=30):
             null
 
 screen combo_screen:
+    style_prefix "combo"
     hbox:
-        style "centered_style"
         vbox:
             yalign 0.5
-            label "One" text_size 50
-            label "Two" text_size 50
-            label "Three" text_size 50
+            text "One"
+            text "Two"
+            text "Three"
         vbox:
-            label "Four" text_size 50
-            label "Five" text_size 50
-            label "Six" text_size 50
-            label "Seven" text_size 50
+            text "Four"
+            text "Five"
+            text "Six" 
+            text "Seven"
+        vbox:
+            text "Total: [total]"
+        imagebutton auto "button_%s.png":
+            action [Function(incTotal), SelectedIf(total % 2 == 1)]
